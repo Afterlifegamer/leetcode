@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useEffect } from "react";
 import { GrFormClose } from "react-icons/gr";
-import Login from './Login';
 
+import ResetPassword from "./ResetPassword";
+import { useAtomValue, useSetAtom } from "jotai";
+import { authModalState } from "@/atoms/authModalAtoms";
+import Login from "./Login";
+import Signup from "./Signup";
 type AuthModelProps = object;
 
 const AuthModel: React.FC<AuthModelProps> = () => {
+  const authModal = useAtomValue(authModalState);
+  const closeModal = useCloseModal();
   return (
     <>
       {/* Transparent overlay with light/dark support */}
@@ -18,11 +24,18 @@ const AuthModel: React.FC<AuthModelProps> = () => {
               <button
                 type="button"
                 className="bg-transparent rounded-lg text-sm p-1.5 ml-auto inline-flex items-center hover:bg-gray-800 hover:text-white text-white"
+                onClick={closeModal}
               >
                 <GrFormClose className="h-5 w-5" />
               </button>
             </div>
-            <Login />
+            {authModal.type === "login" ? (
+              <Login />
+            ) : authModal.type === "register" ? (
+              <Signup />
+            ) : (
+              <ResetPassword />
+            )}
           </div>
         </div>
       </div>
@@ -31,3 +44,21 @@ const AuthModel: React.FC<AuthModelProps> = () => {
 };
 
 export default AuthModel;
+function useCloseModal() {
+  const setAuthModalState = useSetAtom(authModalState);
+  const closeModal = () => {
+    setAuthModalState((prev) => ({ ...prev, isOpen: false, type: "login" }));
+  };
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === "ESCAPE") {
+        closeModal();
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  });
+  return closeModal;
+}
