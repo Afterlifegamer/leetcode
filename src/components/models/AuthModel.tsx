@@ -11,6 +11,7 @@ type AuthModelProps = object;
 const AuthModel: React.FC<AuthModelProps> = () => {
   const authModal = useAtomValue(authModalState);
   const closeModal = useCloseModal();
+
   return (
     <>
       {/* Transparent overlay with light/dark support */}
