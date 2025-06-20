@@ -1,12 +1,14 @@
+import ProblemsTable from "@/components/ProblemsTable/ProblemsTable";
 import Topbar from "@/components/Topbar/topbar";
 
 export default function Home() {
+  console.log(process.env.NEXT_PUBLIC_FIREBASE_API_KEY);
   return (
     <>
       <main className="bg-[rgb(26,26,26)] min-h-screen">
         <Topbar />
         <h1 className="text-2xl text-center text-gray-700 dark:text-gray-400 font-medium uppercase mt-10 mb-5">
-          &ldquo; Problems &rdquo; 👇
+          Problems
         </h1>
 
         <div className="relative overflow-x-auto mx-auto px-6 pb-10">
@@ -31,6 +33,7 @@ export default function Home() {
                 </th>
               </tr>
             </thead>
+            <ProblemsTable />
           </table>
         </div>
       </main>
