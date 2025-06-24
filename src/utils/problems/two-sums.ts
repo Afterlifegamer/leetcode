@@ -7,7 +7,7 @@ const starterCodeTwoSum = `function twoSum(nums,target){
 };`;
 
 // checks if the user has the correct code
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 const handlerTwoSum = (fn: any) => {
   // fn is the callback that user's code is passed into
   try {
