@@ -12,6 +12,7 @@
     "@codemirror/lang-javascript": "^6.2.4",
     "@uiw/codemirror-theme-vscode": "^4.23.13",
     "@uiw/react-codemirror": "^4.23.13",
+    "assert": "^2.1.0",
     "dotenv": "^16.5.0",
     "firebase": "^11.9.1",
     "jotai": "^2.12.5",
