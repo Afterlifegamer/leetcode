@@ -4,6 +4,7 @@ import { useSetAtom } from "jotai";
 import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import { toast } from "react-toastify";
 
 type SignupProps = object;
 
@@ -18,7 +19,7 @@ const Signup: React.FC<SignupProps> = () => {
     password: "",
   });
   const router = useRouter();
-  const [createUserWithEmailAndPassword, user, loading, error] =
+  const [createUserWithEmailAndPassword, userCredential, loading, error] =
     useCreateUserWithEmailAndPassword(auth);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -39,13 +40,23 @@ const Signup: React.FC<SignupProps> = () => {
       router.push("/");
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.log(error.message);
+        if (error && error.message) {
+          toast.error(error.message, {
+            position: "top-center",
+            autoClose: 3000,
+            theme: "dark",
+          });
+        }
       }
     }
   };
   useEffect(() => {
-    if (error) {
-      alert(error.message);
+    if (error && error.message) {
+      toast.error(error.message, {
+        position: "top-center",
+        autoClose: 3000,
+        theme: "dark",
+      });
     }
   }, [error]);
 

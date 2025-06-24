@@ -1,9 +1,10 @@
-
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}"
+    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -18,15 +19,15 @@ module.exports = {
         "dark-gray-7": "rgb(179, 179, 179)",
         "gray-8": "rgb(38, 38, 38)",
         "dark-gray-8": "rgb(219, 219, 219)",
-        "brand-orange": 'rgb(255, 161, 22)',
+        "brand-orange": "rgb(255, 161, 22)",
         "brand-orange-s": "rgb(193, 122, 15)",
         "dark-yellow": "rgb(255, 192, 30)",
         "dark-pink": "rgb(255, 55, 95)",
-        "olive": "rgb(0, 184, 163)",
+        olive: "rgb(0, 184, 163)",
         "dark-green-s": "rgb(44, 187, 93)",
         "dark-blue-s": "rgb(10, 132, 255)",
       },
     },
   },
   plugins: [],
-}
+};

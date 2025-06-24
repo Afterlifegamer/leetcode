@@ -6,6 +6,7 @@ import { useAtomValue } from "jotai";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/firebase/firebase";
 import router from "next/router";
+import Image from "next/image";
 
 type AuthProps = object;
 
@@ -25,7 +26,7 @@ const Auth: React.FC<AuthProps> = () => {
       <div className="max-w-7xl mx-auto">
         <Navbar />
         <div className="flex items-center justify-center h-[calc(100vh-5rem)] pointer-events-none select-none">
-          <img src="/hero.png" alt="hero image" />
+          <Image src="/hero.png" alt="hero image" height={700} width={700} />
         </div>
         {authModal.isOpen && <AuthModel />}
       </div>
